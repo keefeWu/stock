@@ -1,0 +1,2 @@
+sudo pip3 install pandas_datareader
+sudo pip3 install fix_yahoo_finance
