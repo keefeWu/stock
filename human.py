@@ -5,7 +5,7 @@ import datetime
 import matplotlib.pyplot as plt
 
 # yf.pdr_override()
-start = datetime.datetime(2016,1,1)#获取数据的时间段-起始时间
+start = datetime.datetime(2019,1,1)#获取数据的时间段-起始时间
 end = datetime.date.today()#获取数据的时间段-结束时间
 stock = web.DataReader("000001.SS", "yahoo", start, end)#获取浙大网新2017年1月1日至今的股票数据
 
@@ -29,7 +29,7 @@ continuousFallNum = 0
 isHold = False
 boughtDate = 0
 boughtPrice = 0
-benifit = 0
+benefit = 0
 
 details = {}
 
@@ -43,7 +43,7 @@ for i in range(1, stock.shape[0]):
 		if dateDiff.days >= 7 and stock.ix[i]['Close'] > boughtPrice:
 			isHold = False # 卖掉咯
 			# 假设每次投资10000
-			benifit += priceDiff * 10000.0 / boughtPrice
+			benefit += priceDiff * 10000.0 / boughtPrice
 			continuousFallNum = 0
 			# 记录一下
 			details[stock.ix[i].name] = [boughtDate, priceDiff * 10000.0 / boughtPrice, boughtPrice, stock.ix[i]['Close']]
@@ -55,4 +55,4 @@ for i in range(1, stock.shape[0]):
 			boughtDate = stock.ix[i].name
 			boughtPrice = stock.ix[i]['Close']
 
-print(benifit)
+print(benefit)
